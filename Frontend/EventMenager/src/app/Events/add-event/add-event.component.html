@@ -1,0 +1,67 @@
+<div class="section-title">
+  <h2>Dodaj nowy event!</h2>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <div class="row d-flex justify-content-center">
+
+    <div class="form-group col-md-5">
+      <mat-form-field class="example-full-width">
+
+        <input placeholder="Hasło" matInput formControlName="eventName" type="text" class="form-control" id="eventName"
+          placeholder="Nazwa twojego eventu">
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-5">
+      <mat-form-field class="example-full-width">
+
+        <input placeholder="Hasło" matInput formControlName="eventLocation" type="text" class="form-control"
+          id="eventLoc" placeholder="Lokalizacja eventu">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+
+    <div class="form-group col-md-5">
+
+      <mat-form-field>
+        <mat-label>Typ eventu</mat-label>
+        <mat-select formControlName="eventTypeId">
+          <mat-option *ngFor="let type of eventsType" [value]="type.eventId">{{type.eventName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-5">
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Data wydarzenia</mat-label>
+          <input matInput formControlName="eventDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="form-group col-md-10">
+
+        <mat-form-field >
+          <mat-label>Opis eventu</mat-label>
+
+          <textarea matInput formControlName="eventDescription" class="form-control" 
+            rows="3"></textarea>
+        </mat-form-field>
+    </div>
+    <br>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="form-group col-md-10">
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+  </div>
+  </div>
+</form>

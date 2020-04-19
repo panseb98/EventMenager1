@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+  <p>Na który event chcesz zaprosić?</p>
+  <ng-container *ngIf="data.simpleEvent">
+  
+  <mat-form-field>
+    <mat-label>Typ eventu</mat-label>
+    <mat-select [(value)]="data.val">
+      <mat-option *ngFor="let type of data.simpleEvent" [value]="type.eventId">{{type.eventName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button [mat-dialog-close]="data.val" cdkFocusInitial>Ok</button>
+</div>

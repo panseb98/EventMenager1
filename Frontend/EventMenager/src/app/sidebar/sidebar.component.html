@@ -1,0 +1,43 @@
+<div *ngIf="auth.decodeToken; else notLogged">
+     
+     
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+              <button mat-button class="nav-link" routerLink="notification">Powiadomienia | </button>
+            </li>
+            <li class="nav-item">
+              <button mat-button class="nav-link" (click) = "logout()"> | Wyloguj |</button>
+            </li>
+              <li class="nav-item">
+              <button mat-button class="nav-link">Witaj {{auth.decodeToken.unique_name}} , zobacz swój profil</button>
+            </li>
+            </ul>
+
+        </div>
+      </nav>
+</div>
+<ng-template #notLogged>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="login">Zaloguj sie</a>
+            </ul>
+
+        </div>
+      </nav>
+</ng-template>

@@ -1,0 +1,56 @@
+<div class="section-title">
+    <h2>Dodaj paragon do eventu</h2>
+</div>
+<div class="row">
+    <div class="col-md-6">
+
+        <form [formGroup]="form" class="example-form"  (ngSubmit)="submit()">
+            <h2>Uzupełnij i dodaj!</h2>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nazwa produktu</mat-label>
+                <input formControlName="itemName" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="price-form">
+                <mat-label>Ilość</mat-label>
+                <input formControlName="itemAmount"  matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="price-form">
+                <mat-label>Kwota</mat-label>
+                <input formControlName="itemPrice"  matInput>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary">Primary</button>
+
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Lista pozycji z paragonu</h2>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+                <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef> Ilość </th>
+                <td mat-cell *matCellDef="let element"> {{element.itemAmount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Cena </th>
+                <td mat-cell *matCellDef="let element"> {{element.itemPrice}} </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> Usuń </th>
+                <td mat-cell *matCellDef="let element"> Delete </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

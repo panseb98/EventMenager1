@@ -1,0 +1,57 @@
+
+                  <div class="section-title">
+ <h2>Twoja lista powiadomień</h2>
+          </div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Numer. </th>
+    <ng-container *matCellDef="let element">
+
+       <td mat-cell *ngIf="element.isNew; else normal" style="background-color: PaleGreen;" > {{element.lp}} </td>
+
+      <ng-template  #normal>
+        <td mat-cell > {{element.lp}} </td>
+      </ng-template >
+
+    </ng-container>
+  </ng-container>
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nazwa komunikatu </th>
+    <ng-container *matCellDef="let element">
+      <td *ngIf="element.isNew; else normal" mat-cell style="background-color: PaleGreen;" > {{element.notificationName}} </td>
+
+      <ng-template  #normal>
+        <td mat-cell > {{element.notificationName}} </td>
+      </ng-template >
+
+    </ng-container>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Zatwierdź </th>
+    <ng-container *matCellDef="let element">
+
+     <td mat-cell *ngIf="element.isNew; else normal" style="background-color: PaleGreen;"> <button [disabled]="!element.isNotificationAccept" mat-button (click)="setNot(element.lp)">{{element.buttonName}}</button> </td>
+
+      <ng-template  #normal>
+          <td mat-cell> <button [disabled]="!element.isNotificationAccept" mat-button (click)="setNot(element.lp)">{{element.buttonName}}</button> </td>
+      </ng-template >
+
+    </ng-container>
+  </ng-container>
+
+  <!-- Symbol Column -->
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

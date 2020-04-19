@@ -1,0 +1,48 @@
+<div *ngIf="auth.decodeToken; else notlogged">
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Zarządzaj EVENTAMI</div>
+      <div class="list-group list-group-flush">
+        <a routerLink="" class="list-group-item list-group-item-action bg-light">Strona główna</a>
+        <a routerLink="events/addEvent" class="list-group-item list-group-item-action bg-light">Dodaj nowy EVENT</a>
+        <a routerLink="events/listEvents" class="list-group-item list-group-item-action bg-light">Twoje EVENTY</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+    <app-sidebar></app-sidebar>
+
+      <div class="container-fluid">
+                <div style="padding-top: 20px;"></div>
+
+      <router-outlet></router-outlet>
+
+       
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+</div>
+<ng-template #notlogged>
+  <div class="d-flex" id="wrapper">
+
+    <div id="page-content-wrapper">
+    <app-sidebar></app-sidebar>
+
+      <div class="container-fluid">
+                <div style="padding-top: 20px;"></div>
+
+      <app-login></app-login>
+
+       
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+</ng-template>>
