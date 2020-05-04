@@ -50,4 +50,5 @@ export class AuthService {
     return this.http.get<Array<UserToList>>('https://localhost:44307/api/auth/getusers');
   }
 
+
 }

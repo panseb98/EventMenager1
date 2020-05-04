@@ -18,7 +18,7 @@ namespace WebAPI.Models.Events
         [Column("RECEIPT_PROD_PRICE")]
         public double Price { get; set; }
         [Column("RECEIPT_PROD_REC_ID")]
-        public int ReceiptId { get; set; }
+        public int ParticipantId { get; set; }
         public Participant Participant { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace WebAPI.Services.Interfaces
     public interface INotifyciationService
     {
         Task NotifyNewReceiptItem(List<User> participants, Event mainEvent, int changerId);
+        Task GetNotifications(List<User> participants, Event mainEvent, int changerId);
     }
 }

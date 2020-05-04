@@ -20,5 +20,9 @@ namespace WebAPI.Models.Events
         [Column("PARTICIPANT_IS_ADMIN")]
         public bool isAdmin { get; set; }
         public virtual ICollection<ReceiptItem> Items { get; set; }
+        public Participant()
+        {
+            Items = new HashSet<ReceiptItem>();
+        }
     }
 }

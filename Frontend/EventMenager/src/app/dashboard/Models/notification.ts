@@ -4,10 +4,9 @@ export class Notyfication{
     isNew : boolean;
 }
 export class NotyficationtoList{
-    lp: number;
-    notificationName : string;
-    isNotificationAccept : boolean;
+    invitationId: number;
+    invitationType : string;
     isNew : boolean;
-    buttonDisable: boolean;
-    buttonName : string;
+    sender : string;
+    eventName : string;
 }

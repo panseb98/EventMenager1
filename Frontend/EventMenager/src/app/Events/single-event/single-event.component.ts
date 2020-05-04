@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { state, trigger, transition, animate, style } from '@angular/animations';
+import { EventService } from 'src/app/services/event.service';
+import { EventVM, ReceiptItemVM } from '../Models/EventViewModel';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-single-event',
@@ -15,15 +19,24 @@ import { state, trigger, transition, animate, style } from '@angular/animations'
 })
 export class SingleEventComponent implements OnInit {
   dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  columnsToDisplay = ['name', 'surname' , 'city'];
+  
+ 
+  columnsToDisplay2 = ['user.name', 'user.surname', 'user.city'];
+
   expandedElement: PeriodicElement | null;
-  constructor() {
-    
+  eventData : EventVM;
+  constructor(private _service : EventService, private router: Router, private authService : AuthService ,      private route : ActivatedRoute, 
+    ) {
    }
 
   ngOnInit() {
+    let event = +this.route.snapshot.paramMap.get("event");
+    let userId = this.authService.decodeToken.nameid;
+
+    this._service.getEvent(event, userId).subscribe(res => {console.log(res); this.eventData = res as EventVM});
   }
-  displayedColumns = ['item', 'cost'];
+  displayedColumns = ['item', 'amount','cost'];
   transactions: Transaction[] = [
     {item: 'Beach ball', cost: 4},
     {item: 'Towel', cost: 5},
@@ -34,8 +47,15 @@ export class SingleEventComponent implements OnInit {
   ];
 
   /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  getTotalCost(prices : Array<ReceiptItemVM>) {
+    return prices.map(t => t.price).reduce((acc, value) => acc + value, 0);
+  }
+  print(ob){
+    console.log(ob);
+  }
+  redirectToReceipt(){
+    console.log(this.eventData.eventParticipant);
+    this.router.navigate(['events/addReceipt/', this.eventData.eventParticipant]);
   }
 
 }
@@ -86,3 +106,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
         larger atomic nuclei that have collided with cosmic rays.`
   }
 ];
+
+interface Dictionary{
+  key : string;
+  value : string; 
+}

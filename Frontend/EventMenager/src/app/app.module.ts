@@ -56,8 +56,8 @@ import { ProfileViewComponent, ProfileViewPopup } from './Users/profile-view/pro
 import { ProfileListComponent } from './Users/profile-list/profile-list.component';
 import { UserListComponent } from './authorization/user-list/user-list.component';
 import { CdkTableModule } from '@angular/cdk/table';
-
 import { ProfileViewEventsComponent } from './Users/profile-view/profile-view-events/profile-view-events.component';
+import { AuthComponent } from './authorization/auth/auth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +75,8 @@ import { ProfileViewEventsComponent } from './Users/profile-view/profile-view-ev
     ProfileListComponent,
     UserListComponent,
     ProfileViewEventsComponent,
-    ProfileViewPopup
+    ProfileViewPopup,
+    AuthComponent
     ],
   imports: [
     BrowserModule,

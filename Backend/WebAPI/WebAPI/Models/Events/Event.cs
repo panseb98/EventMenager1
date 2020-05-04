@@ -31,7 +31,6 @@ namespace WebAPI.Models.Events
         public virtual ICollection<Participant> EventParticipants { get; set; }
         public Event()
         {
-
         }
         public Event(NewEvent model)
         {
@@ -42,7 +41,9 @@ namespace WebAPI.Models.Events
             EventTypeId = model.EventTypeId;
             EventDescription = model.EventDescription;
             EventLocation = model.EventLocation;
-            
+            EventParticipants = new HashSet<Participant>();
+
+
         }
 
     }

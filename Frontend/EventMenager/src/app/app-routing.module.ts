@@ -15,19 +15,14 @@ import { UserListComponent } from './authorization/user-list/user-list.component
 const routes: Routes = [
   {path : 'events/addEvent', component: AddEventComponent},
   {path : 'events/listEvents', component: EventListComponent},
-  {path : 'events/singleEvent', component: SingleEventComponent},
-  {path : 'events/addReceipt', component: ReceiptComponent},
+  {path : 'events/singleEvent/:event', component: SingleEventComponent},
+  {path : 'events/addReceipt/:participant', component: ReceiptComponent},
   {path : 'notification', component: NotificationListComponent},
   {path : '', component: DashboardComponent},
   {path : 'login', component: LoginComponent},
   {path : 'register', component: RegisterComponent},
   {path : 'user/view/:user', component: ProfileViewComponent},
   {path : 'user/list', component: UserListComponent}
-
-
-
-
-
 
 ];
 

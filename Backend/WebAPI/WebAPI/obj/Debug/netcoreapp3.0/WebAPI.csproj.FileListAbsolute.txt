@@ -129,4 +129,5 @@ E:\EventMenager\Backend\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\Microsoft.Identity
 E:\EventMenager\Backend\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
 E:\EventMenager\Backend\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
 E:\EventMenager\Backend\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
+E:\EventMenager\Backend\WebAPI\WebAPI\bin\Debug\netcoreapp3.0\AutoMapper.dll
 E:\EventMenager\Backend\WebAPI\WebAPI\obj\Debug\netcoreapp3.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache

@@ -1,80 +1,84 @@
-
-    <div class="row">
-      <!-- /.col-lg-3 -->
+<ng-container *ngIf="eventData">
+  <div class="row">
+    <!-- /.col-lg-3 -->
     <div class="col col-lg4">
-            <h2>Członkowie</h2>
+      <h2>Członkowie</h2>
 
-    <div class ="row">
- <table mat-table align="center"
-       [dataSource]="dataSource" multiTemplateDataRows
-       class="mat-elevation-z8">
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-  </ng-container>
+      <div class="row">
+        <table mat-table align="center" [dataSource]="eventData.eventParticipants" multiTemplateDataRows
+          class="mat-elevation-z8">
+          <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.user[column]}} </td>
+          </ng-container>
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-      <div class="example-element-detail"
-           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+              <div class="example-element-detail"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 
-        <div class="example-element-description example-container mat-elevation-z8">
-          <h2>Paragon</h2>
-            <table mat-table [dataSource]="transactions" style="width: 100%;">
-              <!-- Item Column -->
-              <ng-container matColumnDef="item">
-                <th mat-header-cell *matHeaderCellDef> Item </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
-                <td mat-footer-cell *matFooterCellDef> Total </td>
-              </ng-container>
+                <div class="example-element-description example-container mat-elevation-z8">
+                  <h2>Paragon</h2>
+                  <table mat-table [dataSource]="element.receiptItems" style="width: 100%;">
+                    <!-- Item Column -->
+                    <ng-container matColumnDef="item">
+                      <th mat-header-cell *matHeaderCellDef> Nazwa produktu </th>
+                      <td mat-cell *matCellDef="let aa"> {{aa.prodName}} </td>
+                      <td mat-footer-cell *matFooterCellDef> Suma </td>
+                    </ng-container>
+                    <ng-container matColumnDef="amount">
+                      <th mat-header-cell *matHeaderCellDef> Ilość </th>
+                      <td mat-cell *matCellDef="let aa"> {{aa.amount}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <!-- Cost Column -->
+                    <ng-container matColumnDef="cost">
+                      <th mat-header-cell *matHeaderCellDef> Kwota </th>
+                      <td mat-cell *matCellDef="let aa"> {{aa.price}} </td>
+                      <td mat-footer-cell *matFooterCellDef> {{getTotalCost(element.receiptItems)}}zł </td>
+                    </ng-container>
 
-              <!-- Cost Column -->
-              <ng-container matColumnDef="cost">
-                <th mat-header-cell *matHeaderCellDef> Cost </th>
-                <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
-                <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
-              </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                  </table>
+                </div>
+              </div>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-            </table>
-          </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+        </table>
+
       </div>
-    </td>
-  </ng-container>
+      <button style="margin-left: 20px; margin-top: 15px;" mat-raised-button color="primary" *ngIf="eventData.eventParticipant" (click)="redirectToReceipt()">Dodaj swój paragon !</button>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-      class="example-element-row"
-      [class.example-expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element">
-  </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-</table>
-    </div>
     </div>
 
-      <div class="col col-lg-7">
-        <h2>Opis</h2>
-        <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Product Name</h3>
-            <h4>$24.99</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-            4.0 stars
-          </div>
+    <div class="col col-lg-7">
+      <h2>Opis</h2>
+      <div class="card mt-4">
+        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <div class="card-body">
+          <h3 class="card-title">{{eventData.eventName}}, {{eventData.eventType}}</h3>
+          <h4>{{eventData.eventLocation}}</h4>
+          <p class="card-text">{{eventData.eventDescription}}</p>
         </div>
-        <!-- /.card -->
-        <!-- /.card --> 
-
       </div>
-      </div>
+      <!-- /.card -->
+      <!-- /.card -->
 
-    
+    </div>
+  </div>
 
 
 
+</ng-container>

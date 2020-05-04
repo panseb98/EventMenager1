@@ -21,8 +21,20 @@ namespace WebAPI.Controllers
         [HttpPost("addinvi")]
         public async Task<IActionResult> AddInvitation(AddInvitation invitation)
         {
-            await _service.AddInvitation(invitation);
+            if(await _service.AddInvitation(invitation)) return Ok(new { status = "OK", message = "Poprawnie wysłano zaproszenie!" });
+            return Ok(new { status = "Exists", message = "Wysłałeś już takie zaproszenie!" }) ;
+        }
+        [HttpGet("getinvitations")]
+        public async Task<IActionResult> GetInvitations(int userId)
+        {
+            return Ok(await _service.GetInvitations(userId));
+        }
+        [HttpPost("acceptInvitation")]
+        public async Task<IActionResult> AcceptInvitation(int invitationId)
+        {
+            await _service.AddParticipant(invitationId);
             return Ok();
         }
+        
     }
 }

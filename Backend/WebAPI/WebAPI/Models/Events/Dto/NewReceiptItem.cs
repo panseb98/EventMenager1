@@ -7,10 +7,10 @@ namespace WebAPI.Models.Events.Dto
 {
     public class NewReceiptItem
     {
-        public string ProductName { get; set; }
-        public int Amount { get; set; }
-        public double Price  { get; set; }
-        public int ReceiptId { get; set; }
-        public int UserId { get; set; }
+        public int Id { get; set; }
+        public string PositionName { get; set; }
+        public int Count { get; set; }
+        public double Value  { get; set; }
+        public int Participant { get; set; }
     }
 }

@@ -5,7 +5,14 @@
 body {
   overflow-x: hidden;
 }
-
+.wrong-message{
+  background: red;
+  color: white;
+}
+.success-message{
+  background: green;
+  color: white;
+}
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
